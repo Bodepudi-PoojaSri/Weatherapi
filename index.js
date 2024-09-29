@@ -1,6 +1,6 @@
 const apiKey = 'f71b3360cbf3491aa68175027242609';
 async function fetchWeather() {
-    // Get the city name from the input field
+    
     const city = document.getElementById('cityInput').value.trim();
     if (!city) {
         alert('Please enter a city name.');
@@ -16,7 +16,7 @@ async function fetchWeather() {
             return;
         }
 
-        // Get the forecast data for today
+       
         const forecast = data.forecast.forecastday[0].hour;
 
         // Helper function to find the forecast for a specific hour (24-hour format)
@@ -24,7 +24,7 @@ async function fetchWeather() {
             return forecast.find(f => new Date(f.time).getHours() === hour);
         }
 
-        // Get weather data for specific times
+     
         const times = [
             { label: '9 AM', hour: 9 },
             { label: '12 PM', hour: 12 },
@@ -32,7 +32,7 @@ async function fetchWeather() {
             { label: '9 PM', hour: 21 }
         ];
 
-        // Display weather data for each time in a row flex layout
+        
         let weatherHtml = `<h2>Weather forecast for ${data.location.name}, ${data.location.country}</h2>`;
         weatherHtml += `<div class="weather-row">`; // Start flex container
         times.forEach(time => {
@@ -53,7 +53,7 @@ async function fetchWeather() {
 
         document.getElementById('weather').innerHTML = weatherHtml;
 
-        // Change background based on the weather condition at 9 AM (or any time you choose)
+        
         const weatherCondition = getForecastByHour(9)?.condition.text.toLowerCase();
         if (weatherCondition) {
             if (weatherCondition.includes('rain')) {
